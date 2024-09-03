@@ -1,6 +1,8 @@
 // State Variables can be declared outside of the onReady
 // Feel free to make this to what you want!
 // Example:
+// add event listner to each button 
+// Setting base Ap and HP as variables
 let fungusHP = 100;
 let attackPoints = 100;
 
@@ -16,7 +18,7 @@ function onReady() {
     // - Updates state which is ->
     // - Rendered to the DOM
 }
-
+// create objects for each attack type to hold cost and damage for use in functions 
 const arcaneScepter = {
     apCost: 12,
     hpDamage: 14,
@@ -42,20 +44,23 @@ const starFire = {
 }
 
 
-
+// function to happend when aarcaneScepter button is clicked
 function arcaneScepterClick(event){
     fungusHP = Math.max(fungusHP - arcaneScepter.hpDamage, 0);
+    // WHhen clicked aracanescepter damage (see object) is removed from OG fungus HP value
+    // and placed back into OG fungus HP variable
+    // Math.max and ,0 sets minimum HP can be to '0'
     attackPoints = Math.max(attackPoints - arcaneScepter.apCost, 0);
-
+    // see above but for attack points and apCOst 
     const hpText1 = document.querySelector('.hp-text');
     hpText1.innerText =`${fungusHP} HP`;
-
+    // select hp-text class and replace value with new fungus HP value as calculated above in function
     const apText1 = document.querySelector('.ap-text');
     apText1.innerText =`${attackPoints} AP`;
 
     hpValues();
     apValues();
-    
+    // calls ap and hp value functions to run them for their selected scenarios (e.g. if hp === 0). See below
 }
 
 
@@ -110,7 +115,7 @@ if (fungusHP === 0){
     document.querySelector('.freaky-fungus').classList.add('dead');  
 }
 }
-
+// if fungus HP value hits '0', change second part of class (first part of  class is "freaky-fungus") from walk to dead
 function apValues(){
     if (attackPoints === 0){
         document.querySelector('.freaky-fungus').classList.remove('walk');
@@ -124,5 +129,6 @@ function apValues(){
     }
 }
 }
-    
+ // if attack HP hits '0' change second part of class (first part of  class is "freaky-fungus") from walk to jump
+ // second part: select all buttons (all have a first class of attack-btn), loop through all buttons (because there are multiple), grab each button at [i], diable buttons via .disable by setting to true (disable = true)
 
